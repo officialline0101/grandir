@@ -395,9 +395,9 @@
                 <span class="highlight-text">◆ラフォス&リンパ◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment1')" data-price="15000">ラフォス&リンパ施術90分(所要時間:約150分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment2')" data-price="15000">ラフォス&リンパ施術120分(所要時間:約180分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment3')" data-price="15000">ラフォス&リンパ施術150分(所要時間:約210分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment1')" data-price="15000">ラフォス&リンパ施術90分(所要時間:約130分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment2')" data-price="15000">ラフォス&リンパ施術120分(所要時間:約160分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment3')" data-price="15000">ラフォス&リンパ施術150分(所要時間:約190分)</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">ブライダルコース：オプション</span>
@@ -417,8 +417,8 @@
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this, 'treatment4')" data-price="15000">オールハンド施術60分(所要時間:約120分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment5')" data-price="15000">オールハンド施術90分(所要時間:約150分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment6')" data-price="15000">オールハンド施術120分(所要時間:約180分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment5')" data-price="15000">オールハンド施術90分(所要時間:約130分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment6')" data-price="15000">オールハンド施術120分(所要時間:約160分)</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">シェービングコース：オプション</span>
@@ -437,9 +437,9 @@
                 <span class="highlight-text">◆ドライヘッドスパ◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-price="15000">ドライヘッドスパ施術75分<br>(所要時間:約130分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-price="15000">背中ラフォス&ドライヘッドスパ施術120分<br>(所要時間:約180分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="15000">ドライヘッドスパ&フェイシャル施術120分<br>(所要時間:180分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-price="15000">ドライヘッドスパ施術75分<br>(所要時間:約110分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-price="15000">背中ラフォス&ドライヘッドスパ施術110分<br>(所要時間:約150分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="15000">ドライヘッドスパ&フェイシャル施術120分<br>(所要時間:160分)</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">マッサージコース：オプション</span>
@@ -458,9 +458,9 @@
                 <span class="highlight-text">◆オーダーメイドプラン◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment10')" data-price="15000">オーダーメイド施術90分(所要時間:約150分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment11')" data-price="15000">オーダーメイド施術120分(所要時間:約180分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment12')" data-price="15000">オーダーメイド施術150分(所要時間:210分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment10')" data-price="15000">オーダーメイド施術90分(所要時間:約130分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment11')" data-price="15000">オーダーメイド施術120分(所要時間:約160分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment12')" data-price="15000">オーダーメイド施術150分(所要時間:190分)</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">ブライダルコース：オプション</span>
@@ -558,18 +558,18 @@
         let selectedirradiationsTime = 0; // 訪問回数で選択された時間
 
         let menuTimes = {
-            'ラフォス&リンパ施術90分(所要時間:約150分)': 210,
-            'ラフォス&リンパ施術120分(所要時間:約180分)': 240,
-            'ラフォス&リンパ施術150分(所要時間:約210分)': 270,
-            'オールハンド施術60分(所要時間:約120分)': 180,
-            'オールハンド施術90分(所要時間:約150分)': 210,
-            'オールハンド施術120分(所要時間:約180分)': 240,
-            'ドライヘッドスパ施術75分(所要時間:約130分)': 190,
-            '背中ラフォス&ドライヘッドスパ施術120分(所要時間:約180分)': 240,
-            'ドライヘッドスパ&フェイシャル施術120分(所要時間:180分)': 240,
-            'オーダーメイド施術90分(所要時間:約150分)': 210,
-            'オーダーメイド施術120分(所要時間:約180分)': 240,
-            'オーダーメイド施術150分(所要時間:210分)': 270
+            'ラフォス&リンパ施術90分(所要時間:約130分)': 150,
+            'ラフォス&リンパ施術120分(所要時間:約160分)': 180,
+            'ラフォス&リンパ施術150分(所要時間:約190分)': 210,
+            'オールハンド施術60分(所要時間:約120分)': 150,
+            'オールハンド施術90分(所要時間:約130分)': 150,
+            'オールハンド施術120分(所要時間:約160分)': 240,
+            'ドライヘッドスパ施術75分(所要時間:約110分)': 130,
+            '背中ラフォス&ドライヘッドスパ施術110分(所要時間:約150分)': 180,
+            'ドライヘッドスパ&フェイシャル施術120分(所要時間:160分)': 180,
+            'オーダーメイド施術90分(所要時間:約130分)': 150,
+            'オーダーメイド施術120分(所要時間:約160分)': 180,
+            'オーダーメイド施術150分(所要時間:190分)': 210
         };
 
         let selectedMenuTime = 0;
@@ -698,7 +698,7 @@
 
 if (treatmentId === 'treatment1') {
     treatmentText.innerHTML = createTreatmentContent(
-        'ラフォス&リンパ施術90分<br>(所要時間:約150分)',
+        'ラフォス&リンパ施術90分<br>(所要時間:約130分)',
         'https://www.dropbox.com/scl/fi/4t9gum1imxjphhxhtzou3/.png?rlkey=4vi8bzlhyo7o58o0rvkexy8i5&st=4rj3a2wm&raw=1',
         '別途カウンセリング時間約30分。<br>ラジオ波でハンドで届かない深層まで温めほぐします',
         '9,350円~',
@@ -706,7 +706,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment2') {
     treatmentText.innerHTML = createTreatmentContent(
-        'ラフォス&リンパ施術120分<br>(所要時間:約180分)',
+        'ラフォス&リンパ施術120分<br>(所要時間:約160分)',
         'https://www.dropbox.com/scl/fi/4t9gum1imxjphhxhtzou3/.png?rlkey=4vi8bzlhyo7o58o0rvkexy8i5&st=4rj3a2wm&raw=1',
         '別途カウンセリング時間約30分。<br>ラジオ波でハンドで届かない深層まで温めほぐします',
         '9,350円~',
@@ -714,7 +714,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment3') {
     treatmentText.innerHTML = createTreatmentContent(
-        'ラフォス&リンパ施術150分<br>(所要時間:約210分)',
+        'ラフォス&リンパ施術150分<br>(所要時間:約190分)',
         'https://www.dropbox.com/scl/fi/4t9gum1imxjphhxhtzou3/.png?rlkey=4vi8bzlhyo7o58o0rvkexy8i5&st=4rj3a2wm&raw=1',
         '別途カウンセリング時間約30分。<br>ラジオ波でハンドで届かない深層まで温めほぐします',
         '9,350円~',
@@ -726,11 +726,11 @@ if (treatmentId === 'treatment1') {
         'https://www.dropbox.com/scl/fi/1njkdrqheuh8wisstun4p/.png?rlkey=epu0lxky9rcrsfqx3cweakdsc&st=89x6mqsu&raw=1',
         '別途カウンセリング時間約30分。<br>足先からデコルテまで触れていきます。',
         '6,000円~',
-        '120分'
+        '150分'
     );
 } else if (treatmentId === 'treatment5') {
     treatmentText.innerHTML = createTreatmentContent(
-        'オールハンド90分<br>(所要時間:約150分)',
+        'オールハンド90分<br>(所要時間:約130分)',
         'https://www.dropbox.com/scl/fi/1njkdrqheuh8wisstun4p/.png?rlkey=epu0lxky9rcrsfqx3cweakdsc&st=89x6mqsu&raw=1',
         '別途カウンセリング時間約30分。<br>足先からデコルテまで触れていきます。',
         '6,000円~',
@@ -738,7 +738,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment6') {
     treatmentText.innerHTML = createTreatmentContent(
-        'オールハンド120分<br>(所要時間:約180分)',
+        'オールハンド120分<br>(所要時間:約160分)',
         'https://www.dropbox.com/scl/fi/1njkdrqheuh8wisstun4p/.png?rlkey=epu0lxky9rcrsfqx3cweakdsc&st=89x6mqsu&raw=1',
         '別途カウンセリング時間約30分。<br>足先からデコルテまで触れていきます。',
         '6,000円~',
@@ -746,7 +746,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment7') {
     treatmentText.innerHTML = createTreatmentContent(
-        'ドライヘッドスパ75分<br>(所要時間:約130分)',
+        'ドライヘッドスパ110分<br>(所要時間:約130分)',
         'https://www.dropbox.com/scl/fi/mobieph7imx5zf62g1kjz/.png?rlkey=es3o3x6e1lh2lh4dp5i182pp5&st=nx6x5uhj&raw=1',
         '心と身体の疲れを癒してくれるドライヘッドスパ',
         '7,150円~',
@@ -754,7 +754,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment8') {
     treatmentText.innerHTML = createTreatmentContent(
-        '背中ラフォス&ドライヘッドスパ施術120分<br>(所要時間:約180分)',
+        '背中ラフォス&ドライヘッドスパ施術110分<br>(所要時間:約150分)',
         'https://www.dropbox.com/scl/fi/mobieph7imx5zf62g1kjz/.png?rlkey=es3o3x6e1lh2lh4dp5i182pp5&st=nx6x5uhj&raw=1',
         '心と身体の疲れを癒してくれるドライヘッドスパ&<br>≪ラフォス≫でハンドでは届かない深部まで温めマッサージ。',
         '-円~',
@@ -762,7 +762,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment9') {
     treatmentText.innerHTML = createTreatmentContent(
-        'ドライヘッドスパ&フェイシャル施術120分<br>(所要時間:約180分)',
+        'ドライヘッドスパ&フェイシャル施術160分<br>(所要時間:約180分)',
         'https://www.dropbox.com/scl/fi/mobieph7imx5zf62g1kjz/.png?rlkey=es3o3x6e1lh2lh4dp5i182pp5&st=nx6x5uhj&raw=1',
         '心と身体の疲れを癒してくれるドライヘッドスパ&<br>フェイシャル',
         '-円~',
@@ -770,15 +770,15 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment10') {
     treatmentText.innerHTML = createTreatmentContent(
-        'オーダーメイド施術90分<br>(所要時間:約120分)',
+        'オーダーメイド施術90分<br>(所要時間:約130分)',
         'https://www.dropbox.com/scl/fi/l0v85wub9x9xosq8jjney/.png?rlkey=m9ucydo2cuborouoss7b8n46q&st=oesnixcg&raw=1',
         '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
         '9,350円~',
-        '120分'
+        '150分'
     );
 } else if (treatmentId === 'treatment11') {
     treatmentText.innerHTML = createTreatmentContent(
-        'オーダーメイド施術120分<br>(所要時間:約180分)',
+        'オーダーメイド施術120分<br>(所要時間:約160分)',
         'https://www.dropbox.com/scl/fi/l0v85wub9x9xosq8jjney/.png?rlkey=m9ucydo2cuborouoss7b8n46q&st=oesnixcg&raw=1',
         '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
         '9,350円~',
@@ -786,7 +786,7 @@ if (treatmentId === 'treatment1') {
     );
 } else if (treatmentId === 'treatment12') {
     treatmentText.innerHTML = createTreatmentContent(
-        'オーダーメイド施術150分<br>(所要時間:約210分)',
+        'オーダーメイド施術150分<br>(所要時間:約190分)',
         'https://www.dropbox.com/scl/fi/l0v85wub9x9xosq8jjney/.png?rlkey=m9ucydo2cuborouoss7b8n46q&st=oesnixcg&raw=1',
         '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
         '9,350円~',
