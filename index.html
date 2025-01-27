@@ -386,6 +386,7 @@
             <button type="button" onclick="showMenu('allhands')">オールハンド</button>
             <button type="button" onclick="showMenu('DryHeadSpa')">ドライヘッドスパ</button>
             <button type="button" onclick="showMenu('custommade')">オーダーメイドプラン</button>
+            <button type="button" onclick="showMenu('special')">スペシャルケア</button>
         </div>
 
         <div id="treatment-text" style="margin-bottom: 20px;"></div>
@@ -471,6 +472,15 @@
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋10分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋20分</button>
+            </div>
+        </div>
+
+        <div id="special" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-text">◆スペシャルケア◆</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this, 'treatment13')" data-price="15000">スペシャルケア施術180分(所要時間:約220分)</button>
             </div>
         </div>
 
@@ -791,6 +801,14 @@ if (treatmentId === 'treatment1') {
         '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
         '13,590円',
         '210分'
+    );
+} else if (treatmentId === 'treatment13') {
+    treatmentText.innerHTML = createTreatmentContent(
+        'スペシャルケア',
+        'https://www.dropbox.com/scl/fi/30a88x43lrxi7i9n05oeg/.png?rlkey=bh11v9wabzbvkph80uxtgedjj&st=cilws6vl&raw=1',
+        '施術時間：180分<br>ラフォス&リンパ90分+フェイシャル60分+クイックスパ30分',
+        '16,800円~',
+        '約220分'
     );
             } else {
                 treatmentText.innerHTML = '';
