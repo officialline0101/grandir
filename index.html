@@ -404,6 +404,7 @@
         <div class="label">メニューをお選びください</div>
         <div class="menu-sections">
             <button type="button" onclick="showMenu('Laphos')">ラフォス&リンパ</button>
+            <button type="button" onclick="showMenu('aromatouch')">アロマタッチ</button>
             <button type="button" onclick="showMenu('allhands')">オールハンド</button>
             <button type="button" onclick="showMenu('DryHeadSpa')">ドライヘッドスパ</button>
             <button type="button" onclick="showMenu('custommade')">オーダーメイドプラン</button>
@@ -430,6 +431,16 @@
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋10分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋20分</button>
+            </div>
+        </div>
+
+        <div id="aromatouch" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-text">◆アロマタッチ◆</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this, 'treatment14')" data-price="15000">アロマタッチ&リンパ施術120分（所要時間:約160分）</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment15')" data-price="15000">アロマタッチ&リンパ施術150分（所要時間:約190分）</button>
             </div>
         </div>
 
@@ -606,6 +617,8 @@
             'ドライヘッドスパ&フェイシャル施術120分(所要時間:160分)': 180,
             'オーダーメイド施術90分(所要時間:約130分)': 150,
             'オーダーメイド施術120分(所要時間:約160分)': 180,
+            '︎アロマタッチ&リンパ施術120分（所要時間:約160分）': 160,
+            'アロマタッチ&リンパ施術150分（所要時間:約190分）': 190,
             'オーダーメイド施術150分(所要時間:190分)': 210
         };
 
@@ -831,6 +844,22 @@ if (treatmentId === 'treatment1') {
     treatmentText.innerHTML = createTreatmentContent(
         'スペシャルケア',
         'https://www.dropbox.com/scl/fi/30a88x43lrxi7i9n05oeg/.png?rlkey=bh11v9wabzbvkph80uxtgedjj&st=cilws6vl&raw=1',
+        '施術時間：180分<br>ラフォス&リンパ90分+フェイシャル60分+クイックスパ30分',
+        '16,800円~',
+        '約220分'
+    );
+} else if (treatmentId === 'treatment14') {
+    treatmentText.innerHTML = createTreatmentContent(
+        'アロマタッチ&リンパ施術120分<br>（所要時間:約160分）',
+        'https://www.dropbox.com/s/iyhxdpb2tgmfe5u/%E3%82%A2%E3%83%AD%E3%83%9E.png?st=ya6c8mc5&raw=1',
+        '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
+        '13,590円',
+        '210分'
+    );
+} else if (treatmentId === 'treatment15') {
+    treatmentText.innerHTML = createTreatmentContent(
+        'アロマタッチ&リンパ施術150分<br>（所要時間:約190分）',
+        'https://www.dropbox.com/s/iyhxdpb2tgmfe5u/%E3%82%A2%E3%83%AD%E3%83%9E.png?st=ya6c8mc5&raw=1',
         '施術時間：180分<br>ラフォス&リンパ90分+フェイシャル60分+クイックスパ30分',
         '16,800円~',
         '約220分'
