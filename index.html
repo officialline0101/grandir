@@ -426,7 +426,7 @@
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">アロマタッチ</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">アロマタッチ45分</button>
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
                 <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
@@ -455,9 +455,10 @@
                 <button type="button" onclick="selectSymptom(this, 'treatment6')" data-price="15000">オールハンド施術120分(所要時間:約160分)</button>
             </div>
             <div class="highlight-background">
-                <span class="highlight-text">シェービングコース：オプション</span>
+                <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">アロマタッチ45分</button>
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
                 <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
@@ -476,9 +477,11 @@
                 <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="15000">ドライヘッドスパ&フェイシャル施術120分<br>(所要時間:160分)</button>
             </div>
             <div class="highlight-background">
-                <span class="highlight-text">マッサージコース：オプション</span>
+                <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">アロマタッチ45分</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ラフォス&リンパ90分</button>
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
                 <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
@@ -497,14 +500,12 @@
                 <button type="button" onclick="selectSymptom(this, 'treatment12')" data-price="15000">オーダーメイド施術150分(所要時間:190分)</button>
             </div>
             <div class="highlight-background">
-                <span class="highlight-text">ブライダルコース：オプション</span>
+                <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
                 <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋10分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋20分</button>
             </div>
         </div>
 
@@ -597,7 +598,8 @@
 
         // 訪問回数ごとの時間設定 (例：初めて=20分、2回目以降=15分)
         let irradiationsTimes = {
-            'アロマタッチ': 45,
+            'アロマタッチ45分': 45,
+            'ラフォス&リンパ90分': 90,
             'ドライヘッドスパ施術75分': 75,
             'クイックドライヘッドスパ施術30分': 30,
             'フェイシャル施術60分': 60,
