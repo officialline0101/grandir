@@ -1,63 +1,188 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>予約フォーム</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        /* 右端の細いナビ（固定） */
+        .side-nav {
+            position: fixed;
+            /* 画面スクロールしても固定 */
+            right: -5px;
+            /* さらに右へ */
+            top: 80%;
+            /* 画面中央に固定 */
+            transform: translateY(-50%) translateX(13px);
+            /* 中央配置と右ずらし */
+            background: #57453a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4px;
+            border-radius: 10px 0 0 10px;
+            z-index: 1000;
+            width: 35px;
+            /* さらに細く */
+        }
+
+        .side-nav a:active {
+            transform: scale(1.0);
+            /* タップした後に元のサイズに戻す */
+        }
+
+        .side-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 10px;
+            margin: 5px 0;
+            padding: 5px;
+            transition: background 0.3s, transform 0.2s;
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        .side-nav a span {
+            font-size: 24px;
+            /* 矢印をさらに大きく */
+            position: absolute;
+            left: -0px;
+            /* 左端に寄せる */
+            top: 13px;
+            /* さらに下へ */
+        }
+
+        /* スマホ用の微調整 */
+        @media (max-width: 600px) {
+            .side-nav {
+                right: 2px;
+                /* スマホではさらに右端に */
+                width: 30px;
+                /* もっと細く */
+            }
+
+            .side-nav a {
+                width: 28px;
+                height: 28px;
+            }
+
+            .side-nav a i {
+                font-size: 12px;
+                /* スマホではもっと小さく */
+            }
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e7e7e7;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             height: 100vh;
             margin: 0;
-            padding-top: 20px;
+            padding-top: 5px;
             overflow-x: hidden;
-            /* 横スクロールを防ぐ */
         }
 
         .container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fdfdfd;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 500px;
-            padding: 20px;
+            padding: 25px;
             box-sizing: border-box;
             margin: 0 auto;
-            /* 中央に配置 */
         }
 
         h1 {
+            background: linear-gradient(135deg, #57453a, #382b23);
+            color: white;
+            padding: 20px;
+            border-radius: 0 15px 0px 45px;
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
+            display: block;
+            margin: -20px -15px 20px -15px;
+            font-size: 26px;
+            font-weight: 600;
+            box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
         }
 
         .label {
             display: block;
             margin-bottom: 10px;
-            padding: 10px;
-            font-weight: bold;
+            padding: 3px;
+            font-weight: 600;
             background-color: #57453a;
             color: white;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 18px;
             text-align: center;
+            /* 中央揃え */
+            text-indent: 40px;
+            /* テキストを右に20pxずらす */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .labelContent {
+            display: block;
+            margin-bottom: 10px;
+            padding: 3px;
+            font-weight: 600;
+            background-color: #57453a;
+            color: white;
+            border-radius: 6px;
+            font-size: 18px;
+            text-align: center;
+            /* 中央揃え */
+            text-indent: 0px;
+            /* テキストを右に20pxずらす */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 必須マークのスタイル */
+        .required {
+            color: red;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .required-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #57453a;
+            font-weight: bold;
+            font-size: 0.9em;
+            border-radius: 4px;
+            padding: 2px 6px;
+            border: 2px solid #57453a;
         }
 
         input[type="text"],
         input[type="tel"],
         textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px;
             box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.3s;
         }
 
         .visit-buttons,
@@ -107,7 +232,7 @@
             padding: 15px;
             border: none;
             border-radius: 4px;
-            background-color: #ca9660;
+            background-color: #ff4c4c;
             color: #fff;
             font-size: 18px;
             cursor: pointer;
@@ -118,13 +243,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            /* カレンダーを中央に配置 */
             margin-bottom: 20px;
             position: relative;
-            width: 106%;
-            /* 横幅を広げる */
-            margin-left: -3%;
-            /* 親要素の中心にカレンダーを配置 */
+            width: 100%;
         }
 
         .calendar {
@@ -134,26 +255,36 @@
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            /* 横スクロールを防ぐ */
-            width: 106%;
+            width: 100%;
         }
 
         .calendar table {
             width: 100%;
             border-collapse: collapse;
+            table-layout: fixed;
+            /* セル幅を均等にする */
         }
 
         .calendar th,
         .calendar td {
+            font-size: 12.5px;
+            /* ここでフォントサイズを変更 */
             text-align: center;
             padding: 5px;
             cursor: pointer;
             vertical-align: top;
-            width: 14.28%;
-            /* 7日間が一列に収まるように設定 */
+            width: auto;
+            /* 通常のセルは自動調整 */
             box-sizing: border-box;
-            border: 1px solid #000;
-            /* ここで区切り線を追加 */
+            border: 2px solid #696969;
+        }
+
+        .calendar th:first-child,
+        .calendar td:first-child {
+            width: 17%;
+            /* ここで時間列の幅を調整 */
+            font-size: 12.5px;
+            /* フォントサイズを変更 */
         }
 
         .calendar th {
@@ -165,7 +296,7 @@
         }
 
         .calendar td.selected {
-            background-color: #13ca5e;
+            background-color: #57453a;
             color: #fff;
         }
 
@@ -179,11 +310,24 @@
 
         .week-button {
             padding: 10px 20px;
-            background-color: #444;
+            background-color: #444444;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            transform-origin: center center;
+        }
+
+        .week-button:hover {
+            background-color: #444444;
+            transform: scale(1.15);
+            /* ドーン！ってくらい拡大🔥 */
+        }
+
+        .week-button:active {
+            transform: scale(0.95);
+            /* クリックした瞬間にギュッと縮む💥 */
         }
 
         .month-button-container {
@@ -203,31 +347,78 @@
             cursor: pointer;
         }
 
+        .month-button:hover {
+            background-color: #444444;
+            transform: scale(1.15);
+            /* ドーン！ってくらい拡大🔥 */
+        }
+
+        .month-button:active {
+            transform: scale(0.95);
+            /* クリックした瞬間にギュッと縮む💥 */
+        }
+
         .current-month {
             font-size: 16px;
             font-weight: bold;
             color: #444;
-            margin-top: 10px;
+            margin-top: 20px;
             /* 下にずらす */
             display: inline-block;
             /* margin-top を適用しやすくする */
         }
 
         .loading-spinner {
-            position: absolute;
+            position: fixed;
+            /* 画面全体に対応 */
             top: 50%;
+            /* 縦中央 */
             left: 50%;
+            /* 横中央 */
             transform: translate(-50%, -50%);
             display: none;
+            /* 初期状態は非表示 */
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* 半透明の黒背景で注目度アップ */
+            padding: 40px;
+            /* 周囲に余白をつける */
+            border-radius: 10px;
+            /* 角丸で柔らかい印象 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            /* 少し立体感を追加 */
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-top-color: #444;
+            width: 60px;
+            /* スピナーをさらに大きく */
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            /* 薄い白で枠を柔らかく */
+            border-top-color: #00d1ff;
+            /* 明るい青で目立たせる */
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            /* 丸い形状 */
+            animation: spin 0.7s linear infinite;
+            /* 滑らかで速い回転 */
+            margin-left: 12px;
+            /* スピナーを右にずらす */
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            /* スピナーとテキストの間隔 */
+            font-size: 15px;
+            /* さらに大きなフォントサイズ */
+            font-weight: bold;
+            /* 太字で目立たせる */
+            color: #ffffff;
+            /* 純白で高いコントラスト */
+            letter-spacing: 1px;
+            /* 文字間隔を広げてモダンな印象に */
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            /* テキストに影をつけて視認性アップ */
         }
 
         @keyframes spin {
@@ -257,12 +448,17 @@
             display: none;
         }
 
-        #treatment-text {
-            background-color: #eef9f5;
-            padding: 10px;
-            border-radius: 4px;
-            margin-top: 1px;
-        }
+#treatment-text { 
+    background-color: #eef9f5;
+    padding: 15px 20px;       /* 上下左右の余白を調整 */
+    border-radius: 8px;       /* 角丸を少し大きく */
+    margin: 10px auto;        /* 上下余白、左右中央寄せ（ブロック要素の場合） */
+    text-align: center;       /* テキスト中央揃え */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* ソフトな影で立体感 */
+    max-width: 600px;         /* 横幅を制限して見やすく */
+    font-size: 16px;          /* フォントサイズ調整（必要に応じて変更） */
+    color: #131313;              /* 文字色を濃くして読みやすく */
+}
 
         .highlight-background {
             background-color: #f9f9d6;
@@ -291,253 +487,520 @@
             font-weight: bold;
             /* 太文字に設定 */
         }
-        .spinner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-top-color: #3498db;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 0.8s linear infinite;
-}
+        .info-text {
+            margin-top: 20px;
+            /* 上の余白 */
+            margin-bottom: 10px;
+            /* 下に白い隙間を追加 */
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.5;
+            text-align: center;
+            word-wrap: break-word;
+            background-color: #eef9f5;
+            /* 青っぽい背景色を追加 */
+            padding: 10px;
+            border-radius: 4px;
+        }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-.treatment-container {
-        text-align: center;
-        padding: 10px;
-        background-color: #ffffff;
-        color: #333;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        max-width: 350px;
-        margin: auto;
-    }
-    .treatment-image {
-        text-align: center;
-        margin-top: 15px;
-        position: relative;
-        width: 100%;
-        max-width: 300px;
-        height: 180px;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid #d4af37;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin: 15px auto;
-    }
-    .treatment-description {
-        margin-top: 15px;
-        padding: 15px;
-        background-color: #fafafa;
-        color: #555;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        font-size: 14px;
-        line-height: 1.5;
-        text-align: left;
-        max-width: 350px;
-        margin: 15px auto;
-    }
-    .treatment-price {
-        margin-top: 15px;
-        padding: 10px;
-        background: #fff;
-        color: #333;
-        border-radius: 8px;
-        border: 1px solid #d4af37;
-        font-weight: bold;
-        font-size: 15px;
-        text-align: right;
-        max-width: 350px;
-        margin: 15px auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-    }
-    .spinner-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-    }
-    .title {
-    font-size: 24px;
-    color: #4A4A4A;
+        /* 携帯端末向けのレスポンシブデザイン */
+        @media (max-width: 768px) {
+            .info-text {
+                font-size: 11.5px;
+                /* スマホでは少し小さく */
+                margin-top: 10px;
+                /* 上下のマージンを調整 */
+                line-height: 2.0;
+                /* テキストの高さ調整 */
+            }
+        }
+
+        .symptoms,
+        .options {
+            display: block;
+            /* ボタンを縦並びに */
+        }
+
+        .symptoms button,
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f7f7f7;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .symptoms button.active,
+        .options button.active {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .highlight-background {
+            cursor: pointer;
+            background-color: #57453a;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .symptoms,
+        .options {
+            display: block;
+            /* ボタンを縦並びに */
+        }
+
+        .highlight-text {
+            font-weight: bold;
+            display: inline-block;
+            color: #fff;
+            /* オプションテキストの色 */
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: -5px 0;
+        }
+
+        hr {
+            margin: -5px 0;
+        }
+
+        .edit-button {
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            /* 改行を防ぐ */
+            width: 80px;
+            /* 横幅を固定 */
+            text-align: center;
+            /* テキストを中央揃え */
+        }
+
+        .edit-button:hover {
+            background-color: #ff4f4f;
+        }
+
+
+        /* 100点の予約フォームCSS */
+
+        input:focus,
+        textarea:focus {
+            border-color: #57453a;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #57453a;
+            color: #000000;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #e9e9e9;
+            transform: scale(1.05);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #dc3545;
+        }
+
+        .submit-button:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            input,
+            button {
+                font-size: 14px;
+            }
+        }
+
+        button.active {
+            outline: 2px solid #696969;
+            /* ここで枠線を指定 */
+            outline-offset: 2px;
+        }
+
+        /* 必須マークのスタイル */
+        .required {
+            color: #ffffff;
+            /* ゴールド（黄色） */
+            font-weight: lighter;
+            /* 文字を細くする */
+            font-size: 0.6em;
+            margin-left: 5px;
+            vertical-align: 0.8em;
+            /* 位置を少し上に調整 */
+
+            /* 白色背景の四角形 */
+            background-color: rgb(255, 15, 15);
+            padding: 0 5px;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        .current-month {
+            text-align: center;
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -10px);
+            /* Y方向に上げる */
+            background-color: #57453a;
+            color: #fff;
+            padding: 3px 12px;
+            /* ボックスのパディングを縮小 */
+            border-radius: 8px;
+            /* 角の丸みを少し減少 */
+            font-size: 1.4rem;
+            /* フォントサイズを小さく */
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(47, 103, 167, 0.2);
+            /* 影も控えめに */
+        }
+
+        /* ナビゲーションバー */
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1e1e2d;
+            padding: 10px;
+            border-radius: 10px 0 0 10px;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+            background: #4a90e2;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #357ac4;
+        }
+
+        /* スクロール用のセクション */
+        .section {
+            padding: 50px 10px;
+            margin-top: 30px;
+        }
+
+.info-textmemo {
+    margin-top: 0px; /* 上の余白 */
+    margin-bottom: 0px; /* 下に白い隙間を追加 */
+    font-size: 16px; /* 見やすいサイズに調整 */
+    color: #000000;
+    line-height: 1.6; /* 行間を少し広げる */
     text-align: center;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    word-wrap: break-word;
+    background-color: #eef9f5; /* 青っぽい背景色を追加 */
+    padding: 12px; /* 余白もやや広げて読みやすく */
+    border-radius: 4px;
+    width: 100%; /* 横幅を横一杯に */
+    box-sizing: border-box; /* パディング含めて横一杯に */
+}
+
+/* 携帯端末向けのレスポンシブデザイン */
+@media (max-width: 768px) {
+    .info-textmemo {
+        font-size: 14px; /* スマホでも見やすいサイズに調整 */
+        margin-top: 0px; /* 上下のマージンを調整 */
+        line-height: 1.1; /* 行間を少し広げて読みやすく */
+        width: 100%; /* 横幅を横一杯に */
+        box-sizing: border-box; /* パディング含めて横一杯に */
+    }
 }
     </style>
 </head>
 
 <body>
+    <!-- 右側の追従ナビ -->
+    <div class="side-nav" id="sideNav">
+        <a href="#section-message">
+            <span>⇩</span>
+            <i class="fas fa-comment"></i>
+        </a>
+    </div>
+    
     <div class="container">
         <h1>グランディール<br>予約フォーム</h1>
-        <div class="label">お客様名※必須</div>
-        <input type="text" id="name" placeholder="お名前を入力してください">
+        <div class="label">お客様名<span class="required">必須</span></div>
+        <input type="text" id="name" placeholder="お名前を入力してください" oninput="saveInput('name')">
 
-        <div class="label">電話番号※必須</div>
-        <input type="tel" id="phone" placeholder="電話番号を入力してください">
+        <div class="label">電話番号<span class="required">必須</span></div>
+        <input type="tel" id="phone" placeholder="電話番号を入力してください" oninput="saveInput('phone')">
 
-        <div class="label">ご来店回数※必須</div>
+        <div class="label">ご来店回数<span class="required">必須</span></div>
         <div class="visit-buttons">
             <button type="button" id="firstVisit" onclick="selectVisit(this)">初めて</button>
             <button type="button" id="repeatVisit" onclick="selectVisit(this)">2回目以降</button>
         </div>
 
-        <div class="label">メニューをお選びください</div>
+        <div class="label" id="course">メニューをお選びください<span class="required">必須</span></div>
         <div class="menu-sections">
-            <button type="button" onclick="showMenu('Laphos')">ラフォス&リンパ</button>
-            <button type="button" onclick="showMenu('aromatouch')">アロマタッチ</button>
-            <button type="button" onclick="showMenu('allhands')">オールハンド</button>
-            <button type="button" onclick="showMenu('DryHeadSpa')">ドライヘッドスパ</button>
-            <button type="button" onclick="showMenu('custommade')">オーダーメイドプラン</button>
-            <button type="button" onclick="showMenu('special')">スペシャルケア</button>
+            <button type="button" onclick="showMenu('Laphos')">オーダーメイド</button>
+            <button type="button" onclick="showMenu('aromatouch')">肩凝り頭痛</button>
+            <button type="button" onclick="showMenu('allhands')">温活！めぐりリンパ</button>
+            <button type="button" onclick="showMenu('DryHeadSpa')">コンディショニング向上</button>
+            <button type="button" onclick="showMenu('custommade')">不調にお悩み</button>
+            <button type="button" onclick="showMenu('special')">脳腸相関</button>
+            <button type="button" onclick="showMenu('watawata')">ドライヘッドスパ</button>
+            <button type="button" onclick="showMenu('kaisuuken')">回数券</button>
         </div>
 
         <div id="treatment-text" style="display: none; margin-bottom: 10px;"></div>
 
         <div id="Laphos" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆ラフォス&リンパ◆</span>
+                <span class="highlight-text">◆オーダーメイド◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment1')" data-price="15000">ラフォス&リンパ施術90分(所要時間:約130分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment2')" data-price="15000">ラフォス&リンパ施術120分(所要時間:約160分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment3')" data-price="15000">ラフォス&リンパ施術150分(所要時間:約190分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment1')" data-price="13590">その日の体調でオーダーメイド150分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment2')" data-price="12000">その日の体調でオーダーメイド120分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment3')" data-price="9350">その日の体調でオーダーメイド90分</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋10分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋20分</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="7150">ドライヘッドスパ施術75分</button>
+                <div class="info-textmemo">金額¥7,150</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="3500">クイックドライヘッドスパ施術30分</button>
+                <div class="info-textmemo">金額¥3,500</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="1100">追加ラフォス＋10分</button>
+                <div class="info-textmemo">金額¥1,100</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="2200">追加ラフォス＋20分</button>
+                <div class="info-textmemo">金額¥2,200</div>
             </div>
         </div>
 
         <div id="aromatouch" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆アロマタッチ◆</span>
+                <span class="highlight-text">◆肩凝り頭痛◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment14')" data-price="15000">アロマタッチ&リンパ施術120分（所要時間:約160分）</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment15')" data-price="15000">アロマタッチ&リンパ施術150分(所要時間:約190分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment4')" data-price="13590">肩凝り頭痛に特化したオーダーメイド150分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment5')" data-price="12000">肩凝り頭痛に特化したオーダーメイド120分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment6')" data-price="9350">肩凝り頭痛に特化したオーダーメイド90分</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1100">追加ラフォス＋10分</button>
+                <div class="info-textmemo">金額¥1,100</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="2200">追加ラフォス＋20分</button>
+                <div class="info-textmemo">金額¥2,200</div>
             </div>
         </div>
 
         <div id="allhands" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆オールハンド◆</span>
+                <span class="highlight-text">◆温活！めぐりリンパ◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment4')" data-price="15000">オールハンド施術60分(所要時間:約120分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment5')" data-price="15000">オールハンド施術90分(所要時間:約130分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment6')" data-price="15000">オールハンド施術120分(所要時間:約160分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-price="13590">身体を温め冷え性改善・免疫UP・美肌効果も◎150分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-price="12000">身体を温め冷え性改善・免疫UP・美肌効果も◎120分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="9350">身体を温め冷え性改善・免疫UP・美肌効果も◎90分</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">アロマタッチ45分</button>
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋10分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋20分</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="7150">ドライヘッドスパ施術75分</button>
+                <div class="info-textmemo">金額¥7,150</div>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="3500">クイックドライヘッドスパ施術30分</button>
+                <div class="info-textmemo">金額¥3,500</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
             </div>
         </div>
 
         <div id="DryHeadSpa" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆ドライヘッドスパ◆</span>
+                <span class="highlight-text">◆コンディショニング向上◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-price="15000">ドライヘッドスパ施術75分<br>(所要時間:約110分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-price="15000">背中ラフォス&ドライヘッドスパ施術110分<br>(所要時間:約150分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="15000">ドライヘッドスパ&フェイシャル施術120分<br>(所要時間:160分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment10')" data-price="13590">疲労回復コンディショニング向上150分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment11')" data-price="12000">疲労回復コンディショニング向上120分</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">アロマタッチ45分</button>
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ラフォス&リンパ90分</button>
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋10分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">追加ラフォス＋20分</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="7150">ドライヘッドスパ施術75分</button>
+                <div class="info-textmemo">金額¥7,150</div>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="3500">クイックドライヘッドスパ 施術30分</button>
+                <div class="info-textmemo">金額¥3,500</div>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1100">追加ラフォス＋10分</button>
+                <div class="info-textmemo">金額¥1,100</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="2200">追加ラフォス＋20分</button>
+                <div class="info-textmemo">金額¥2,200</div>
             </div>
         </div>
 
         <div id="custommade" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆オーダーメイドプラン◆</span>
+                <span class="highlight-text">◆不調にお悩み◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment10')" data-price="15000">オーダーメイド施術90分(所要時間:約130分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment11')" data-price="15000">オーダーメイド施術120分(所要時間:約160分)</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment12')" data-price="15000">オーダーメイド施術150分(所要時間:190分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment12')" data-price="13590">不調改善に導くオリジナルメニュー150分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment13')" data-price="12000">不調改善に導くオリジナルメニュー120分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment14')" data-price="9350">不調改善に導くオリジナルメニュー90分</button>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
-                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="15000">ドライヘッドスパ施術75分</button>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="15000">クイックドライヘッドスパ施術30分</button>
-                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="15000">フェイシャル施術60分</button>
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="7150">ドライヘッドスパ施術75分</button>
+                <div class="info-textmemo">金額¥7,150</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="3500">クイックドライヘッドスパ施術30分</button>
+                <div class="info-textmemo">金額¥3,500</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
             </div>
         </div>
 
         <div id="special" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆スペシャルケア◆</span>
+                <span class="highlight-text">◆脳腸相関◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment13')" data-price="15000">スペシャルケア施術180分(所要時間:約220分)</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment15')" data-price="14000">脳腸相関内側から整える150分</button>
+            </div>
+            <div class="highlight-background">
+                <span class="highlight-text">オプション</span>
+            </div>
+            <div class="irradiations">
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1100">追加ラフォス＋10分</button>
+                <div class="info-textmemo">金額¥1,100</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="2200">追加ラフォス＋20分</button>
+                <div class="info-textmemo">金額¥2,200</div>
             </div>
         </div>
 
-        <div class="label">希望日時</div>
+        <div id="watawata" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-text">◆デコルテから整えるドライヘッドスパ80分◆</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="7150">デコルテから整えるドライヘッドスパ80分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="11000">背中もほぐして☆ドライヘッドスパ120分</button>
+            </div>
+            <div class="highlight-background">
+                <span class="highlight-text">オプション</span>
+            </div>
+            <div class="irradiations">
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="6600">リンパマッサージ施術60分</button>
+                <div class="info-textmemo">金額¥6,600</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="9350">ラフォス＆リンパ施術90分</button>
+                <div class="info-textmemo">金額¥9,350</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+            </div>
+        </div>
+
+        <div id="kaisuuken" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-text">◆回数券◆</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="38100">オーダーメイド150分×3回</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="33600">オーダーメイド120分×3回</button>
+            </div>
+            <div class="highlight-background">
+                <span class="highlight-text">オプション</span>
+            </div>
+            <div class="irradiations">
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="7150">ドライヘッドスパ施術75分</button>
+                <div class="info-textmemo">金額¥7,150</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="3500">クイックドライヘッドスパ施術30分</button>
+                <div class="info-textmemo">金額¥3,500</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1100">追加ラフォス＋10分</button>
+                <div class="info-textmemo">金額¥1,100</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="2200">追加ラフォス＋20分</button>
+                <div class="info-textmemo">金額¥2,200</div>
+            </div>
+        </div>
+
+
+        <div class="label">希望日時<span class="required">必須</span></div>
         <div class="calendar-container">
+            <!-- 月を独立して配置 -->
+            <div class="current-month-container">
+                <span class="current-month" id="currentMonth">月</span>
+            </div>
+
             <!-- 月移動ボタンを週移動ボタンの上に配置 -->
             <div class="month-button-container">
-                <button class="month-button" onclick="previousmonth()">前の月</button>
-                <span class="current-month" id="currentMonth">月</span>
+                <button class="month-button" onclick="previousmonth()">前月</button>
                 <button class="month-button" onclick="nextmonth()">翌月</button>
             </div>
 
             <div class="week-button-container">
-                <button class="week-button" onclick="previousWeek()">前の週</button>
+                <button class="week-button" onclick="previousWeek()">前週</button>
                 <button class="week-button" onclick="nextWeek()">翌週</button>
             </div>
+
             <div id="calendar1" class="calendar">
                 <table>
                     <thead>
@@ -557,8 +1020,10 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="loading-spinner" id="loadingSpinner">
                 <div class="spinner"></div>
+                <div class="loading-text">読み込み中...</div>
             </div>
         </div>
 
@@ -568,12 +1033,13 @@
         <div class="label">ご予約内容</div>
         <div id="displayInfo"></div> <!-- ここに選択された情報を表示します -->
 
-        <button class="submit-button" onclick="submitForm()">予約を行う</button>
+        <button class="submit-button" onclick="submitForm()" div id="section-message">予約を行う</button>
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script>
         let visitCount = '';
+        let selectedMenu = '';
         let selectedSymptom = [];  // 配列として定義
         let selectedFullDate = '';
         let currentDate = new Date();
@@ -605,79 +1071,133 @@
 
         // 訪問回数ごとの時間設定 (例：初めて=20分、2回目以降=15分)
         let irradiationsTimes = {
-            'アロマタッチ45分': 45,
-            'ラフォス&リンパ90分': 90,
-            'ドライヘッドスパ施術75分': 75,
+            'ドライヘッドスパ施術75分': 80,
             'クイックドライヘッドスパ施術30分': 30,
-            'フェイシャル施術60分': 60,
+            'フェイシャル施術60分': 80,
             '追加ラフォス＋10分': 10,
-            '追加ラフォス＋20分': 20
+            '追加ラフォス＋20分': 20,
+            'リンパマッサージ施術60分': 80,
+            'ラフォス＆リンパ施術90分': 110
         };
 
         let selectedirradiationsTime = 0; // 訪問回数で選択された時間
 
         let menuTimes = {
-            'ラフォス&リンパ施術90分(所要時間:約130分)': 150,
-            'ラフォス&リンパ施術120分(所要時間:約160分)': 180,
-            'ラフォス&リンパ施術150分(所要時間:約190分)': 210,
-            'オールハンド施術60分(所要時間:約120分)': 150,
-            'オールハンド施術90分(所要時間:約130分)': 150,
-            'オールハンド施術120分(所要時間:約160分)': 240,
-            'ドライヘッドスパ施術75分(所要時間:約110分)': 130,
-            '背中ラフォス&ドライヘッドスパ施術110分(所要時間:約150分)': 180,
-            'ドライヘッドスパ&フェイシャル施術120分(所要時間:160分)': 180,
-            'オーダーメイド施術90分(所要時間:約130分)': 150,
-            'オーダーメイド施術120分(所要時間:約160分)': 180,
-            'アロマタッチ&リンパ施術120分（所要時間:約160分）': 160,
-            'アロマタッチ&リンパ施術150分(所要時間:約190分)': 190,
-            'オーダーメイド施術150分(所要時間:190分)': 210
+            'その日の体調でオーダーメイド150分': 210,
+            'その日の体調でオーダーメイド120分': 180,
+            'その日の体調でオーダーメイド90分': 150,
+            '肩凝り頭痛に特化したオーダーメイド150分': 150,
+            '肩凝り頭痛に特化したオーダーメイド120分': 120,
+            '肩凝り頭痛に特化したオーダーメイド90分': 90,
+            '身体を温め冷え性改善・免疫UP・美肌効果も◎150分': 210,
+            '身体を温め冷え性改善・免疫UP・美肌効果も◎120分': 120,
+            '身体を温め冷え性改善・免疫UP・美肌効果も◎90分': 90,
+            '疲労回復コンディショニング向上150分': 210,
+            '疲労回復コンディショニング向上120分': 180,
+            '不調改善に導くオリジナルメニュー150分': 150,
+            '不調改善に導くオリジナルメニュー120分': 120,
+            '不調改善に導くオリジナルメニュー90分': 90,
+            '脳腸相関内側から整える150分': 230,
+            'デコルテから整えるドライヘッドスパ80分': 150,
+            '背中もほぐして☆ドライヘッドスパ120分': 180,
+            'オーダーメイド150分×3回': 210,
+            'オーダーメイド120分×3回': 180
         };
 
         let selectedMenuTime = 0;
 
+        // 入力内容をローカルストレージに保存
+        function saveInput(id) {
+            const value = document.getElementById(id).value;
+            localStorage.setItem(id, value);
+        }
+
+        // ページが読み込まれたときに前回の入力内容を復元
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedName = localStorage.getItem('name');
+            const savedPhone = localStorage.getItem('phone');
+
+            if (savedName) document.getElementById('name').value = savedName;
+            if (savedPhone) document.getElementById('phone').value = savedPhone;
+        });
+
+        // スムーズスクロール
+        document.querySelectorAll('.side-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
         function updateDisplayInfo() {
             const name = document.getElementById('name').value;
-            const visitCountText = visitCount ? `・<span style="color:red;"><strong>ご来店回数</strong></span>：${visitCount}` : '・来店回数が未選択です';
+            const visitCountText = visitCount ? `<span style="color:#13ca5e;"><strong>【ご来店回数】</strong></span><br>・${visitCount}` : '・来店回数が未選択です';
+            const selectedMenuText = selectedMenu ? `<span style="color:#13ca5e;"><strong>【コース】</strong></span><br>・${selectedMenu}` : '・コースが未選択です';
 
-            // メニューが選択されていたら、各メニューを改行して表示
             const selectedSymptomText = selectedSymptom.length > 0
-                ? `<span style="color:red;"><strong>【メニュー】</strong></span><br>${selectedSymptom.join('<br>')}`
+                ? `<span style="color:#13ca5e;"><strong>【メニュー】</strong></span><br>・${selectedSymptom.join('<br>')}`
                 : '・メニューが未選択です';
 
-            // オプションが選択されていたら、各オプションを改行して表示
             const irradiationsText = irradiationsCount
-                ? `<span style="color:red;"><strong>【オプション】</strong></span><br>${irradiationsCount.split(', ').join('<br>')}`
+                ? `<span style="color:#13ca5e;"><strong>【オプション】</strong></span><br>・${irradiationsCount.split(', ').join('<br>・')}`
                 : '・オプション無し';
 
-            // 所要時間を計算
             let totalMinutes = selectedMenuTime + selectedirradiationsTime + selectedVisitTime;
             let hours = Math.floor(totalMinutes / 60);
             let minutes = totalMinutes % 60;
+            let totalTimeText = `<span style="color:#13ca5e;"><strong>【所要時間】</strong></span><br>・${hours > 0 ? hours + '時間' : ''}${minutes}分`;
 
-            // 所要時間の表示形式：○○時間○○分
-            let totalTimeText = `・<span style="color:red;"><strong>所要時間</strong></span>：${hours > 0 ? hours + '時間' : ''}${minutes}分`;
+            const totalAmountText = `<span style="color:#13ca5e;"><strong>【合計金額】</strong></span><br>・¥${menuPrice + optionsPrice}`;
+            const selectedDateText = selectedFullDate ? `<span style="color:#13ca5e;"><strong>【希望日時】</strong></span><br>・${selectedFullDate}` : '・日時が未選択です';
 
-            // 合計金額の表示
-            const totalAmountText = `・<span style="color:red;"><strong>合計金額</strong></span>：¥${menuPrice + optionsPrice}`;
-
-            // 希望日時が選択された場合の表示
-            const selectedDateText = selectedFullDate ? `・<span style="color:red;"><strong>希望日時</strong></span>：${selectedFullDate}` : '・日時が未選択です';
-
-            // displayInfo要素に情報を表示
+            // 修正ボタン付きのHTMLを作成
             document.getElementById('displayInfo').innerHTML = `
-        <p>・<span style="color:red;"><strong>お名前</strong></span>：${name}</p>
+        <div class="info-row">
+            <p><span style="color:#13ca5e;"><strong>【お名前】</strong></span><br>・${name}</p>
+            <button class="edit-button" onclick="scrollToElement('name')">修正する</button>
+        </div>
         <hr>
-        <p>${visitCountText}</p>
+        <div class="info-row">
+            <p>${visitCountText}</p>
+            <button class="edit-button" onclick="scrollToElement('firstVisit')">修正する</button>
+        </div>
         <hr>
-        <p>${selectedSymptomText}</p>
+        <div class="info-row">
+            <p>${selectedMenuText}</p>
+            <button class="edit-button" onclick="scrollToElement('course')">修正する</button>
+        </div>
         <hr>
-        <p>${irradiationsText}</p>
+        <div class="info-row">
+            <p>${selectedSymptomText}</p>
+            <button class="edit-button" onclick="scrollToElement('Laphos'); scrollToElement('aromatouch'); scrollToElement('allhands'); scrollToElement('DryHeadSpa'); scrollToElement('custommade'); scrollToElement('special');">修正する</button>
+        </div>
         <hr>
-        <p>${totalTimeText}</p>
+        <div class="info-row">
+            <p>${irradiationsText}</p>
+            <button class="edit-button" onclick="scrollToElement('firstirradiations')">修正する</button>
+        </div>
         <hr>
-        <p>${selectedDateText}</p>
+        <div class="info-row">
+            <p>${selectedDateText}</p>
+            <button class="edit-button" onclick="scrollToElement('calendar1')">修正する</button>
+        </div>
         <hr>
     `;
+        }
+
+        // スクロール関数
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
         // 各ボタンや入力フィールドでupdateDisplayInfoを呼び出すようにする
@@ -691,7 +1211,6 @@
         document.querySelectorAll('.irradiations button').forEach(button => {
             button.addEventListener('click', updateDisplayInfo);
         });
-
 
         // 日付セルのクリックイベントで希望日時を更新
         document.querySelectorAll('.calendar td').forEach(cell => {
@@ -714,6 +1233,8 @@
                 selectedMenuTime = 0;
                 selectedSymptom = null; // 選択されたメニューをリセット
                 menuPrice = 0; // メニュー価格をリセット
+                treatmentText.style.display = 'none';
+                return; // ここで処理を終了
             } else {
                 // 1つだけ選択状態にする
                 if (updatedSelectedButtons.length > 1) {
@@ -733,148 +1254,48 @@
             // カレンダーを更新するために取得する日付を渡す
             fetchAvailability(currentDate);
 
-            function createTreatmentContent(title, imageUrl, description, price, time) {
-    return `
-        <div class="treatment-container">
-            <div style="font-size: 18px; font-weight: bold;">${title}</div>
-        </div>
-
-        <div class="treatment-image">
-            <div class="spinner-overlay">
-                <div class="spinner"></div>
-            </div>
-            <img src="${imageUrl}" alt="${title}" style="width: 100%; height: 100%; display: none;" 
-                 onload="this.style.display='block'; this.previousElementSibling.style.display='none';">
-        </div>
-
-        <div class="treatment-description">${description}</div>
-
-        <div class="treatment-price">
-            <span>価格：</span><span>${price}</span><br>
-            <span>所要時間：</span><span>${time}</span>
-        </div>`;
-}
-
-if (treatmentId === 'treatment1') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'ラフォス&リンパ施術90分<br>※凝りでお悩みの方、冷え性の方におすすめ',
-        'https://www.dropbox.com/scl/fi/4t9gum1imxjphhxhtzou3/.png?rlkey=4vi8bzlhyo7o58o0rvkexy8i5&st=4rj3a2wm&raw=1',
-        '別途カウンセリング時間<br>約30分。<br>ラジオ派とこだわりのエッセンスで疲れた身体を癒やす＆お肌ツルツルに❤︎',
-        '9,350円~',
-        '130分'
-    );
-} else if (treatmentId === 'treatment2') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'ラフォス&リンパ施術120分<br>※凝りでお悩みの方、冷え性の方におすすめ',
-        'https://www.dropbox.com/scl/fi/4t9gum1imxjphhxhtzou3/.png?rlkey=4vi8bzlhyo7o58o0rvkexy8i5&st=4rj3a2wm&raw=1',
-        '別途カウンセリング時間<br>約30分。<br>ラジオ派とこだわりのエッセンスで疲れた身体を癒やす＆お肌ツルツルに❤︎',
-        '9,350円~',
-        '160分'
-    );
-} else if (treatmentId === 'treatment3') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'ラフォス&リンパ施術150分<br>※凝りでお悩みの方、冷え性の方におすすめ',
-        'https://www.dropbox.com/scl/fi/4t9gum1imxjphhxhtzou3/.png?rlkey=4vi8bzlhyo7o58o0rvkexy8i5&st=4rj3a2wm&raw=1',
-        '別途カウンセリング時間<br>約30分。<br>ラジオ派とこだわりのエッセンスで疲れた身体を癒やす＆お肌ツルツルに❤︎',
-        '9,350円~',
-        '190分'
-    );
-} else if (treatmentId === 'treatment4') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'オールハンド60分<br>(所要時間:約120分)',
-        'https://www.dropbox.com/scl/fi/1njkdrqheuh8wisstun4p/.png?rlkey=epu0lxky9rcrsfqx3cweakdsc&st=89x6mqsu&raw=1',
-        '別途カウンセリング時間<br>約30分。<br>お肌の引き締めとターンオーバー促進の美容液で肌を綺麗にしながら痛みや不調を改善。',
-        '6,000円~',
-        '150分'
-    );
-} else if (treatmentId === 'treatment5') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'オールハンド90分<br>(所要時間:約130分)',
-        'https://www.dropbox.com/scl/fi/1njkdrqheuh8wisstun4p/.png?rlkey=epu0lxky9rcrsfqx3cweakdsc&st=89x6mqsu&raw=1',
-        '別途カウンセリング時間<br>約30分。<br>お肌の引き締めとターンオーバー促進の美容液で肌を綺麗にしながら痛みや不調を改善。',
-        '6,000円~',
-        '150分'
-    );
-} else if (treatmentId === 'treatment6') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'オールハンド120分<br>(所要時間:約160分)',
-        'https://www.dropbox.com/scl/fi/1njkdrqheuh8wisstun4p/.png?rlkey=epu0lxky9rcrsfqx3cweakdsc&st=89x6mqsu&raw=1',
-        '別途カウンセリング時間<br>約30分。<br>お肌の引き締めとターンオーバー促進の美容液で肌を綺麗にしながら痛みや不調を改善。',
-        '6,000円~',
-        '180分'
-    );
-} else if (treatmentId === 'treatment7') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'ドライヘッドスパ110分<br>(所要時間:約130分)',
-        'https://www.dropbox.com/scl/fi/mobieph7imx5zf62g1kjz/.png?rlkey=es3o3x6e1lh2lh4dp5i182pp5&st=nx6x5uhj&raw=1',
-        '季節の変わり目・自律神経の乱れ・頭痛・眼精疲労、様々な不調に働きかけます。',
-        '7,150円~',
-        '130分'
-    );
-} else if (treatmentId === 'treatment8') {
-    treatmentText.innerHTML = createTreatmentContent(
-        '背中ラフォス&ドライヘッドスパ施術110分<br>(所要時間:約150分)',
-        'https://www.dropbox.com/scl/fi/mobieph7imx5zf62g1kjz/.png?rlkey=es3o3x6e1lh2lh4dp5i182pp5&st=nx6x5uhj&raw=1',
-        '季節の変わり目・自律神経の乱れ・頭痛・眼精疲労、様々な不調に働きかけます。&<br>≪ラフォス≫でハンドでは届かない深部まで温めマッサージ。',
-        '-円~',
-        '180分'
-    );
-} else if (treatmentId === 'treatment9') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'ドライヘッドスパ&フェイシャル施術160分<br>(所要時間:約180分)',
-        'https://www.dropbox.com/scl/fi/mobieph7imx5zf62g1kjz/.png?rlkey=es3o3x6e1lh2lh4dp5i182pp5&st=nx6x5uhj&raw=1',
-        '季節の変わり目・自律神経の乱れ・頭痛・眼精疲労、様々な不調に働きかけます。&<br>フェイシャル',
-        '-円~',
-        '180分'
-    );
-} else if (treatmentId === 'treatment10') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'オーダーメイド施術90分<br>(所要時間:約130分)',
-        'https://www.dropbox.com/scl/fi/l0v85wub9x9xosq8jjney/.png?rlkey=m9ucydo2cuborouoss7b8n46q&st=oesnixcg&raw=1',
-        '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
-        '9,350円~',
-        '150分'
-    );
-} else if (treatmentId === 'treatment11') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'オーダーメイド施術120分<br>(所要時間:約160分)',
-        'https://www.dropbox.com/scl/fi/l0v85wub9x9xosq8jjney/.png?rlkey=m9ucydo2cuborouoss7b8n46q&st=oesnixcg&raw=1',
-        '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
-        '12,000円',
-        '180分'
-    );
-} else if (treatmentId === 'treatment12') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'オーダーメイド施術150分<br>(所要時間:約190分)',
-        'https://www.dropbox.com/scl/fi/l0v85wub9x9xosq8jjney/.png?rlkey=m9ucydo2cuborouoss7b8n46q&st=oesnixcg&raw=1',
-        '別途カウンセリング時間約30分。<br>お体の様子をお伺いしながら施術を行なっていきます',
-        '13,590円',
-        '210分'
-    );
-} else if (treatmentId === 'treatment13') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'スペシャルケア',
-        'https://www.dropbox.com/scl/fi/30a88x43lrxi7i9n05oeg/.png?rlkey=bh11v9wabzbvkph80uxtgedjj&st=cilws6vl&raw=1',
-        '施術時間：180分<br>ラフォス&リンパ90分+フェイシャル60分+クイックスパ30分',
-        '16,800円~',
-        '約220分'
-    );
-} else if (treatmentId === 'treatment14') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'アロマタッチ&リンパ施術120分<br>（所要時間:約160分）',
-        'https://www.dropbox.com/s/iyhxdpb2tgmfe5u/%E3%82%A2%E3%83%AD%E3%83%9E.png?st=ya6c8mc5&raw=1',
-        'アロマタッチで背中も心もほぐれたら、<br>クイックスパで心地の良い眠りに♡',
-        '12,850円',
-        '約160分'
-    );
-} else if (treatmentId === 'treatment15') {
-    treatmentText.innerHTML = createTreatmentContent(
-        'アロマタッチ&リンパ施術150分<br>（所要時間:約190分）',
-        'https://www.dropbox.com/s/iyhxdpb2tgmfe5u/%E3%82%A2%E3%83%AD%E3%83%9E.png?st=ya6c8mc5&raw=1',
-        '全身のリンパを流し、頭皮・デコルテも含めた極上プラン<br>心も身体もしっかり癒されたいあなたにオススメ',
-        '15,500円',
-        '約190分'
-    );
+            if (treatmentId === 'treatment1') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment2') {
+                treatmentText.innerHTML = `<strong>金額¥12,000</strong></div>`;
+            } else if (treatmentId === 'treatment3') {
+                treatmentText.innerHTML = `<strong>金額¥9,350</strong></div>`;
+            } else if (treatmentId === 'treatment4') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment5') {
+                treatmentText.innerHTML = `<strong>金額¥12,000</strong></div>`;
+            } else if (treatmentId === 'treatment6') {
+                treatmentText.innerHTML = `<strong>金額¥9,350</strong></div>`;
+            } else if (treatmentId === 'treatment7') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment8') {
+                treatmentText.innerHTML = `<strong>金額¥12,000</strong></div>`;
+            } else if (treatmentId === 'treatment9') {
+                treatmentText.innerHTML = `<strong>金額¥9,350</strong></div>`;
+            } else if (treatmentId === 'treatment4') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment5') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment6') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment7') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment8') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment9') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment4') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment5') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment6') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment7') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment8') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
+            } else if (treatmentId === 'treatment9') {
+                treatmentText.innerHTML = `<strong>金額¥13,590</strong></div>`;
             } else {
                 treatmentText.innerHTML = '';
             }
@@ -953,6 +1374,12 @@ if (treatmentId === 'treatment1') {
             // `treatment-text` を非表示にする
             document.getElementById("treatment-text").style.display = "none";
 
+            // 選択されたメニューの名前を取得
+            let selectedButton = document.querySelector(`.menu-sections button[onclick="showMenu('${menu}')"]`);
+            if (selectedButton) {
+                selectedMenu = selectedButton.innerText;
+            }
+
             // すべてのメニューボタンの選択状態をリセット
             document.querySelectorAll('.menu-sections button').forEach(button => {
                 button.classList.remove('active');
@@ -965,14 +1392,15 @@ if (treatmentId === 'treatment1') {
             });
 
             // 対応するメニューボタンを選択状態にする
-            document.querySelectorAll('.menu-sections button').forEach(button => {
-                if (button.getAttribute('onclick') === `showMenu('${menu}')`) {
-                    button.classList.add('active');
-                }
-            });
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+            }
 
             // 選択されたメニューセクションを表示
             document.getElementById(menu).classList.add('active');
+
+            // `treatment-text` の内容をリセット
+            document.getElementById("treatment-text").innerHTML = "";
 
             // メニューとオプションをリセット
             selectedSymptom = '';      // メニューのリセット
@@ -1015,6 +1443,7 @@ if (treatmentId === 'treatment1') {
         name: document.getElementById('name').value.trim(),
         phone: document.getElementById('phone').value.trim(),
         visitCount: visitCount,
+        selectedMenu: selectedMenu,
         selectedSymptom: selectedSymptom && selectedSymptom.length > 0 ? selectedSymptom : null, // 空の選択肢をチェック
         irradiationsCount: irradiationsCount,
         dates: selectedFullDate ? [selectedFullDate] : null, // 空チェック
@@ -1042,19 +1471,18 @@ if (treatmentId === 'treatment1') {
         return;
     }
 
-    // LINEトークにメッセージを送信
-    liff.sendMessages([{
-        type: 'text',
-        text: `【予約フォーム】\nお名前：${formData.name}\n電話番号：${formData.phone}\nご来店回数：${formData.visitCount}\nメニュー：${formData.selectedSymptom},${formData.irradiationsCount}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
-    }]).then(() => {
-        /* メッセージ送信成功時の処理 */
-        alert('当日キャンセルは無いようにお願いいたします。キャンセル料発生いたします。');
-        /* LIFFウィンドウを閉じる */
-        liff.closeWindow();
-    }).catch((err) => {
-        /* メッセージ送信失敗時の処理 */
-        console.error('メッセージの送信に失敗しました', err);
-    });
+// irradiationsCountの存在チェック（null, undefined, 空文字でないか）
+const irradiationText = formData.irradiationsCount ? `,${formData.irradiationsCount}` : '';
+
+liff.sendMessages([{
+    type: 'text',
+    text: `【予約フォーム】\nお名前：${formData.name}\n電話番号：${formData.phone}\nご来店回数：${formData.visitCount}\nコース：${formData.selectedMenu}\nメニュー：${formData.selectedSymptom}${irradiationText}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
+}]).then(() => {
+    alert('当日キャンセルは無いようにお願いいたします。キャンセル料発生いたします。');
+    liff.closeWindow();
+}).catch((err) => {
+    console.error('メッセージの送信に失敗しました', err);
+});
 }
 
         function formatDate(dateStr) {
