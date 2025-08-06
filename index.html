@@ -794,6 +794,7 @@
             <button type="button" onclick="showMenu('custommade')">不調にお悩み</button>
             <button type="button" onclick="showMenu('special')">脳腸相関</button>
             <button type="button" onclick="showMenu('watawata')">ドライヘッドスパ</button>
+            <button type="button" onclick="showMenu('aromatatti')">アロマタッチ</button>
             <button type="button" onclick="showMenu('kaisuuken')">回数券</button>
         </div>
 
@@ -957,6 +958,27 @@
             </div>
         </div>
 
+        <div id="aromatatti" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-text">◆アロマタッチ◆</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this, 'treatment21')" data-price="7150">アロマタッチ＆リンパ施術120分</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment22')" data-price="11000">アロマタッチ＆リンパ施術150分</button>
+            </div>
+            <div class="highlight-background">
+                <span class="highlight-text">オプション</span>
+            </div>
+            <div class="irradiations">
+                <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="6600">リンパマッサージ施術60分</button>
+                <div class="info-textmemo">金額¥6,600</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="9350">ラフォス＆リンパ施術90分</button>
+                <div class="info-textmemo">金額¥9,350</div>
+                <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="4400">フェイシャル施術60分</button>
+                <div class="info-textmemo">金額¥4,400</div>
+            </div>
+        </div>
+
         <div id="kaisuuken" class="menu-section">
             <div class="highlight-background">
                 <span class="highlight-text">◆回数券◆</span>
@@ -1100,6 +1122,8 @@
             '脳腸相関内側から整える150分': 230,
             'デコルテから整えるドライヘッドスパ80分': 150,
             '背中もほぐして☆ドライヘッドスパ120分': 180,
+            'アロマタッチ＆リンパ施術120分': 160,
+            'アロマタッチ＆リンパ施術150分': 190,
             'オーダーメイド150分×3回': 210,
             'オーダーメイド120分×3回': 180
         };
